@@ -72,7 +72,6 @@ dependencies {
     implementation ("androidx.constraintlayout:constraintlayout:2.2.0-alpha13")
     // To use constraintlayout in compose
     implementation ("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha13")
-    implementation ("androidx.lifecycle:lifecycle-view-model-ktx:2.7.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -1,5 +1,6 @@
 package com.example.sampletestapp.view;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginScreen extends AppCompatActivity {
+public class LoginScreen extends Activity {
 
     private EditText editTextUserName;
     private EditText editTextPwd;
@@ -58,6 +59,7 @@ public class LoginScreen extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     List<User> users = response.body();
                     // Process the list of users here
+                    Toast.makeText(LoginScreen.this, "User List Fetched successfully", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(LoginScreen.this, "Failed to fetch users", Toast.LENGTH_SHORT).show();
                 }
