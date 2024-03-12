@@ -1,6 +1,7 @@
 package com.example.sampletestapp.view;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,18 +22,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginScreen extends Activity {
+public class LoginScreen extends AppCompatActivity {
 
     private EditText editTextUserName;
     private EditText editTextPwd;
     private Button buttonLogin;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        editTextUserName=findViewById(R.id.text_view_username);
-        editTextPwd=findViewById(R.id.text_view_password);
-        buttonLogin=findViewById(R.id.button_id);
+        editTextUserName = findViewById(R.id.text_view_username);
+        editTextPwd = findViewById(R.id.text_view_password);
+        buttonLogin = findViewById(R.id.button_id);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,26 +52,8 @@ public class LoginScreen extends Activity {
     }
 
     private void loginUser() {
-        APIService userService = RetrofitClient.getClient().create(APIService.class);
-
-        Call<List<User>> call = userService.getUsers();
-        call.enqueue(new Callback<List<User>>() {
-            @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                if (response.isSuccessful()) {
-                    List<User> users = response.body();
-                    // Process the list of users here
-                    Toast.makeText(LoginScreen.this, "User List Fetched successfully", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(LoginScreen.this, "Failed to fetch users", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                Toast.makeText(LoginScreen.this, "Network error", Toast.LENGTH_SHORT).show();
-            }
-        });
+        Intent intent = new Intent(this, UserListActivity.class);
+        startActivity(intent);
     }
 
 
